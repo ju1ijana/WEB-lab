@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/styles/styles.css" />
+      <title>Around the world in 50 stays</title>
+   </head>
+   <body id="cart">
+      <div class="body-cart-container">
+         <div class="grid-container">
+            <div class="large-box">
+               <div class="div-logo">
+                  <a href="/home"><img src="/images/logo_new.png" /></a>
+               </div>
+            </div>
+
+            <div class="small-box-1">
+               <div class="zaglavlje-container">
+                  <div class="div-naslov">Košarica</div>
+                  <div class="div-kosarica">
+                     <img src="/images/cart.png" />
+                  </div>
+               </div>
+            </div>
+            <div class="small-box-2">
+               <div class="hello-container">
+                  <img src="/images/hellov2cart.png" />
+                  <span class="hello">Life is short, the world is wide. I want to make some memories. - Donna Sheridan</span>
+               </div>
+            </div>
+         </div>
+         <div class="cart-container">
+            <div class="cart-holder">
+               <div class="cart-title">
+                  <div class="proizvod">Proizvod</div>
+                  <div class="cijena">Cijena (€)</div>
+                  <div class="kolicina">Količina</div>
+                  <div class="ukupno">Ukupno (€)</div>
+               </div>
+
+               <div class="cart-contents">
+                  <% data.forEach(function(category) { %> <% category.products.forEach(function(product) { %> <% if
+                  (cart[product.id - 1] !== 0) { %>
+                  <div class="jedan-proizvod">
+                     <div class="proizvod-container">
+                        <div class="proizvod-img">
+                           <img src="/images/<%= product.image %>" />
+                        </div>
+                        <div class="proizvod-text"><%= product.name %></div>
+                     </div>
+
+                     <div class="cijena-container">
+                        <div class="cijena-item"><%= (product.price).toFixed(2) %></div>
+                     </div>
+
+                     <div class="kolicina-container">
+                        <div class="kolicina-item">
+                           <div>
+                              <a href="/cart/remove/<%= product.id%>"><button class="cart-button-minus">-</button></a>
+                           </div>
+                           <div class="quantity"><%= cart[product.id - 1] %></div>
+                           <div>
+                              <a href="/cart/add/<%= product.id%>"><button class="cart-button-plus">+</button></a>
+                           </div>
+                        </div>
+                     </div>
+
+                     <div class="ukupno-container">
+                        <div class="ukupno-item"><%= (product.price * cart[product.id - 1]).toFixed(2) %></div>
+                     </div>
+                  </div>
+                  <% } %> <% }) %> <% }) %>
+               </div>
+
+               <div class="totals-container <%= (cart.some((item) => item !== 0)) ? '' : 'hide' %>">
+                  <div class="subtotal-container">
+                     <div class="subtotal-text">Ukupno:</div>
+                     <% let total = 0; data.forEach(category => { category.products.forEach(product => { const cartQuantity =
+                     cart[product.id - 1]; total += cartQuantity * product.price; }); }); total = total.toFixed(2) %>
+                     <div class="subtotal-amount"><%= total%></div>
+                  </div>
+                  <div class="end">
+                     <a href="#"><div class="plati">ZAVRŠI I PLATI</div></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

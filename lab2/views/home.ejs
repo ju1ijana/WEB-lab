@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/styles/styles.css" />
+      <title>Around the world in 50 stays</title>
+   </head>
+   <body id="index">
+      <div class="body-container">
+         <div class="grid-container">
+            <div class="large-box">
+               <div class="div-logo"><img src="/images/logo_new.png" /></div>
+            </div>
+
+            <div class="small-box-1">
+               <div class="zaglavlje-container">
+                  <div class="div-naslov"><%= categories[index].name%></div>
+                  <div class="div-kosarica">
+                     <a href="/cart"><img src="/images/cart.png" /></a>
+                     <% let sum = cart.reduce((accumulator, currentValue) => { return accumulator + currentValue; }, 0);%>
+                     <span class="kosarica-badge <%= sum == 0 ? 'none' : ''%>"><%= sum%></span>
+                  </div>
+               </div>
+            </div>
+            <div class="small-box-2">
+               <div class="hello-container">
+                  <img src="/images/hellov2.png" />
+                  <span class="hello">Life is short, the world is wide. I want to make some memories. - Donna Sheridan</span>
+               </div>
+            </div>
+         </div>
+
+         <div class="ispod-zaglavlje-container">
+            <div class="stupac-container1">
+               <div class="kategorije-container">
+                  <% categories.forEach(function(category, i) { %>
+                  <div class="kategorija c<%= category.id %> hov <%= i === index ? 'selected' : '' %>">
+                     <a href="/home/getProducts/<%= category.id%>"><p><%= category.name %></p></a>
+                  </div>
+                  <% }) %>
+               </div>
+
+               <div class="links-container">
+                  <div class="links">
+                     <a href="#"><p>Kontakt</p> </a>
+                  </div>
+                  <div class="links">
+                     <a href="#"><p>Newsletter</p> </a>
+                  </div>
+                  <div class="links">
+                     <a href="#"><p>Pretplati me</p> </a>
+                  </div>
+               </div>
+            </div>
+            <div class="stupac-container2">
+               <div class="flex-container wrap">
+                  <% categories[index].products.forEach(function(product, i) { %>
+                  <div class="flex-item">
+                     <img id="im<%= product.id%>" src="/images/<%= product.image %>" />
+                     <button class="btn<%= product.id%>">
+                        <a href="/home/add/<%= product.id%>"><img class="imcart" src="/images/just-cart.png" /></a>
+                     </button>
+                     <span class="badge <%= cart[product.id - 1] == 0 ? 'none' : ''%>" id="btn<%= product.id%>text"
+                        ><%= cart[product.id - 1]%></span
+                     >
+                     <p class="im<%= product.id%>text"><%= product.name %></p>
+                  </div>
+                  <% }); %>
+
+                  <div class="flex-item hide" id="im06"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,518 @@
+* {
+   color: black;
+   font-family: Helvetica, sans-serif;
+}
+
+/*slike se prilagođavaju containeru*/
+img {
+   max-width: 100%;
+   height: auto;
+}
+
+/*poveznice newsletter... nemaju underline*/
+a {
+   text-decoration: none;
+}
+
+button {
+   cursor: pointer;
+}
+
+@font-face {
+   font-family: 'Shrikhand';
+   src: url('../fonts/Shrikhand-Regular.ttf') format('truetype');
+}
+
+/**********************************držač cijele stranice**********************************/
+.body-container {
+   padding-left: 10px;
+   display: flex;
+   flex-direction: column;
+   row-gap: 20px; /*razmak između zaglavlja i kategorija + slika*/
+}
+
+/**********************************zaglavlje**********************************/
+
+/*ZAGLAVLJE*/
+.grid-container {
+   padding-right: 20px;
+   display: grid;
+   grid-template-columns: 1fr 4fr;
+   grid-template-rows: auto auto;
+   column-gap: 20px;
+   align-items: end;
+}
+
+.large-box {
+   grid-column: 1 / span 1;
+   grid-row: 1 / span 2;
+}
+
+.small-box-1 {
+   grid-column: 2 / span 1;
+   grid-row: 1 / span 1;
+}
+
+.small-box-2 {
+   grid-column: 2 / span 1;
+   grid-row: 2 / span 1;
+   justify-items: center;
+}
+
+/*za naslov Dvorci/Košarica i ikonu košarice*/
+.zaglavlje-container {
+   flex-flow: row nowrap;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+div.div-logo {
+   border: 3px solid#48946b;
+}
+
+/*sami tekst Dvorci, Košarica*/
+.div-naslov {
+   font-family: 'Shrikhand';
+   font-size: 30px;
+   text-align: left;
+   color: #48946b;
+}
+
+/*za opcije ikone košarice i tražilice*/
+.div-kosarica {
+   /* display: flex;*/
+   position: relative;
+   width: 125px;
+   justify-content: flex-start;
+}
+
+/*onaj brojač iznad košarice/tražilice*/
+.kosarica-badge {
+   display: flex;
+   position: absolute;
+   /* top: 10px;
+    right: 138px;*/
+   top: 0px;
+   right: 105px;
+   min-width: 35px;
+   min-height: 35px;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   background-color: #48946bef;
+   color: white;
+   border-radius: 50%;
+   font-weight: bold;
+}
+
+/*continer za sliku i pozdravni tekst*/
+.hello-container {
+   display: flex;
+   position: relative;
+}
+
+/*natpis life is short*/
+.hello-container span {
+   position: absolute;
+   top: 15px;
+   left: 15px;
+   font-style: italic;
+   color: white;
+}
+
+/*div koji sadrži dva stupca, kategorije i grid slika*/
+.ispod-zaglavlje-container {
+   display: flex;
+   flex-direction: row;
+}
+
+/**********************************kategorije*********************************/
+.kategorije-container,
+.links {
+   display: flex;
+   flex-flow: row nowrap;
+   align-content: space-between;
+   flex-direction: column;
+}
+
+.kategorija p {
+   margin: 10px;
+}
+
+.links-container {
+   padding-top: 30px;
+}
+
+.links p {
+   justify-content: center;
+   text-align: center;
+   margin: 10px;
+   color: #48946bfb;
+   font-weight: bold;
+}
+
+/*zelena pozadina kad miš prelazi preko kategorije*/
+.hov:hover {
+   background-color: #48946b72;
+}
+
+/*klik na kategoriju -> tekst bold i bijeli, pozadina tamnija i stalno obojana*/
+.selected {
+   background-color: #48946b;
+   font-weight: bold;
+}
+
+.selected p,
+.selected i {
+   color: white;
+}
+
+/**********************************grid slika*********************************/
+/*samo za kategorije*/
+.stupac-container1 {
+   display: flex;
+   flex-direction: column;
+   flex: 1;
+}
+
+/*držač držača slika*/
+.stupac-container2 {
+   display: flex;
+   flex-direction: column;
+   flex: 4;
+   padding-right: 20px;
+   padding-left: 20px;
+}
+
+.flex-container {
+   display: flex;
+   flex-flow: row nowrap;
+   row-gap: 15px;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}
+
+.flex-item {
+   position: relative; /*omogućuje da gumb za dodavanje u košaricu bude na slici*/
+   width: 350px;
+   height: 310px;
+   line-height: -325px; /*na toj su onda visini brojevi unutar kvadrata*/
+   font-weight: bold;
+   font-size: 15;
+   text-align: center;
+}
+
+/*gumb za dodavanje u košaricu*/
+.flex-item button {
+   position: absolute;
+   bottom: 60px;
+   left: 50%;
+   transform: translateX(-50%);
+   opacity: 0;
+   background: transparent;
+   border: none;
+}
+
+.imcart {
+   height: 60px;
+}
+
+.flex-item:hover button {
+   opacity: 100;
+}
+
+/*za skrivanje gumba i brojača koliko je dodano u košaricu*/
+.hide {
+   visibility: hidden;
+}
+
+/*brojač u kutu slike koliko je proizvoda odabrano*/
+.badge {
+   display: flex;
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   min-width: 40px;
+   min-height: 40px;
+   text-align: center;
+   align-items: center;
+   justify-content: center;
+   background-color: #48946b;
+   color: white;
+   border-radius: 50%;
+}
+
+.none {
+   opacity: 0;
+}
+
+/********************************************************ZA STRANICU cart.html****************************************************************/
+.body-cart-container {
+   display: flex;
+   padding-left: 10px;
+   flex-direction: column;
+}
+
+/*div koji drži sve ispod slike*/
+.cart-container {
+   display: flex;
+   padding: 10px;
+   padding-top: 30px;
+   padding-right: 30px;
+   justify-content: center;
+}
+
+/*div koji drži samu košaricu (uži)*/
+.cart-holder {
+   display: flex;
+   flex-direction: column;
+   width: 70%;
+   padding: 10px;
+   align-items: flex-end;
+}
+
+/*sadržaj iznad crte aka container koji sadrži naslove*/
+.cart-title {
+   font-weight: bold;
+   font-size: 18px;
+   border-bottom: 2px solid black;
+   padding-bottom: 5px;
+   margin-bottom: 25px;
+}
+
+.cart-title,
+.cart-contents {
+   display: flex;
+   width: 100%;
+   padding-top: 10px;
+}
+
+.proizvod,
+.proizvod-container {
+   flex: 3;
+}
+
+.cijena,
+.cijena-container,
+.ukupno,
+.ukupno-container,
+.kolicina,
+.kolicina-container {
+   flex: 1;
+   text-align: center;
+}
+
+/*div koji sadrži divove jedan-proizvod*/
+.cart-contents {
+   flex-direction: column;
+}
+
+.proizvod-container,
+.cijena-container,
+.ukupno-container,
+.kolicina-container {
+   display: flex;
+   align-items: center;
+   align-content: center;
+   justify-content: center;
+   width: 100%;
+   font-size: 15;
+}
+
+.proizvod {
+   padding-left: 30px;
+}
+
+/*proizvod-img i proizvod-text su dio proizvod-container*/
+.proizvod-img {
+   flex: 8;
+}
+
+.proizvod-text {
+   margin-left: 20px;
+   flex: 11;
+}
+
+.jedan-proizvod {
+   display: flex;
+   padding-bottom: 15px;
+   margin-left: 30px;
+}
+
+.kolicina-item {
+   display: flex;
+   column-gap: 10px; /*razmak između trenutne količine i gumba -/+*/
+}
+
+.cart-button-minus,
+.cart-button-plus {
+   width: 30px;
+   height: 30px;
+   background-color: #48946b;
+   border-radius: 10%;
+   text-align: center;
+   color: white;
+   font-weight: bold;
+   border-color: #48946b;
+   outline: none;
+   border: none;
+}
+
+/*broj između gubmića -/+ */
+.quantity {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+/*container i sve ostale postavke za onaj zadnji dio kosarice, ispod liste itemsa*/
+.totals-container {
+   width: 50%;
+}
+
+.totals-container {
+   display: flex;
+   flex-direction: column;
+   row-gap: 30px;
+   padding-right: 50px;
+}
+
+.subtotal-container {
+   display: flex;
+   justify-content: space-between;
+   border-bottom: 1px solid #48946b72;
+}
+
+.subtotal-text {
+   font-weight: bold;
+   font-size: 18px;
+}
+
+.end {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-end;
+}
+
+.plati {
+   font-weight: bold;
+   font-size: 20px;
+   color: white;
+   display: flex;
+   width: 200px;
+   height: 50px;
+   background-color: #48946b;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+}
+
+@media screen and (max-width: 1024px) {
+   .body-container {
+      padding-right: 10px;
+   }
+   .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 10fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+      padding-right: 0px;
+      align-items: center;
+   }
+
+   .large-box {
+      grid-column: 1 / span 1;
+      grid-row: 1 / span 1;
+   }
+
+   .small-box-1 {
+      grid-column: 2 / span 1;
+      grid-row: 1 / span 1;
+   }
+
+   .small-box-2 {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 1;
+   }
+
+   .div-kosarica {
+      width: 100px;
+   }
+
+   .kosarica-badge {
+      top: -10px;
+      right: 85px;
+   }
+
+   .hello-container span {
+      font-size: 12px;
+   }
+
+   .stupac-container2 {
+      padding-right: 0px;
+   }
+
+   .flex-container {
+      justify-content: space-around;
+      row-gap: 20px;
+   }
+
+   .flex-item {
+      flex-basis: calc(50%-10px);
+      width: 270px;
+      height: 210px;
+   }
+
+   .flex-item p {
+      font-size: 13px;
+   }
+
+   .flex-item button {
+      bottom: 30px;
+   }
+
+   .imcart {
+      height: 50px;
+   }
+
+   .cart-container {
+      margin-right: 20px;
+      padding-right: 0px;
+   }
+
+   .cart-holder {
+      width: 90%;
+   }
+
+   .cart-title,
+   .proizvod-container,
+   .cijena-container,
+   .ukupno-container,
+   .kolicina-container,
+   .subtotal-container,
+   .subtotal-text {
+      font-size: 15px;
+   }
+   .cart-button-minus,
+   .cart-button-plus {
+      width: 25px;
+      height: 25px;
+   }
+
+   .totals-container {
+      width: 70%;
+   }
+
+   .plati {
+      font-size: 18px;
+      width: 180px;
+   }
+}
+
+@media screen and (max-width: 1380px) {
+   .flex-container {
+      justify-content: space-around;
+   }
+}
